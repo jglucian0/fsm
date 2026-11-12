@@ -1,5 +1,5 @@
 # ADR 0005 — Precificação por VHT e índice de markup; regras de arredondamento
-**Status:** aceito (premissas de arredondamento a confirmar)
+**Status:** aceito
 
 **Contexto:** a fórmula simples (custo / (1 - margem)) ignora custos indiretos e tributação, inviabilizando a sustentabilidade do negócio.
 

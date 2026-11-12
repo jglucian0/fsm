@@ -42,18 +42,14 @@ Estrutura de cada módulo: `api/` · `core/{model,ports,usecase}` · `infrastruc
 - Testes `*Test` = unitário/arquitetura (surefire); `*IT` = integração com Testcontainers (failsafe).
 - Código e nomes de domínio em português (Orcamento, ItemOrcamento); termos técnicos em inglês.
 - Sem Lombok: records para DTOs e valor.
-- Dinheiro: `BigDecimal` com escala 2 e `RoundingMode.HALF_UP` (a definir no ADR da Fase 1).
+- Dinheiro: definido no ADR 0005.
 - Testcontainers fixado em 1.21.4 (`<testcontainers.version>` no pom) por compatibilidade com Docker 29+.
 - Testes de integração usam `@SpringBootTest(classes = FsmApplication.class)` (a classe principal fica em `application/`).
 
 ## Estado atual
-- Fase: **1 (Catálogo e calculadora de preços)**, em início.
-- Fase 0 validada: `mvn verify` verde (ArchUnit + smoke IT com Testcontainers).
-- Pronto: pom, docker-compose, Flyway V1 (baseline), esqueleto de pacotes, ArchUnit, CI.
-- Próximo: Fase 1a, domínio e `CalcularPrecoServicoUseCase` em TDD (sem banco).
+- Fase 1a concluída (domínio + CalcularPrecoServicoUseCase, Green); próximo é o Refactor e a Fase 1b, catálogo de materiais e serviços com persistência
 
 ## Decisões em aberto
 - Frontend (PWA): tecnologia a definir após o backend.
 - Autenticação (Spring Security): começar com usuário único, Fase 2 ou 3.
-- Arredondamento: premissas do ADR 0005 a confirmar
 - Biblioteca de PDF (OpenPDF, PDFBox ou iText): Fase 3.
