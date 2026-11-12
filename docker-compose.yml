@@ -1,0 +1,36 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: fsm-postgres
+    environment:
+      POSTGRES_DB: fsm
+      POSTGRES_USER: fsm
+      POSTGRES_PASSWORD: fsm
+    ports:
+      - "5432:5432"
+    volumes:
+      - fsm-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U fsm -d fsm"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  # Servidor SMTP falso para testar e-mails (UI em http://localhost:8025)
+  mailpit:
+    image: axllent/mailpit:latest
+    container_name: fsm-mailpit
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+
+  # Fase 7: habilitar quando entrar a mensageria
+  # rabbitmq:
+  #   image: rabbitmq:3.13-management-alpine
+  #   container_name: fsm-rabbitmq
+  #   ports:
+  #     - "5672:5672"
+  #     - "15672:15672"
+
+volumes:
+  fsm-pgdata:

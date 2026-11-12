@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: fsm
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/fsm}
+    username: ${DB_USER:fsm}
+    password: ${DB_PASSWORD:fsm}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate   # o schema é do Flyway, nunca do Hibernate
+  flyway:
+    enabled: true
+  threads:
+    virtual:
+      enabled: true        # Java 21 virtual threads
+  mvc:
+    problemdetails:
+      enabled: true        # erros HTTP no formato RFC 9457
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
