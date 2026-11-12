@@ -129,7 +129,7 @@ class ConfiguracaoPrecificacaoTest {
 
             assertThatThrownBy(() -> config(custosFixos, proLabore, horasProdutivas, impostos, taxas, margem))
                     .isInstanceOf(PrecificacaoInvalidaException.class)
-                    .hasMessageContainingIgnoringCase(trecho);
+                    .message().containsIgnoringCase(trecho);
         }
 
         private String trechoEsperadoDaMensagem(String descricao) {

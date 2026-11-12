@@ -243,7 +243,7 @@ class CalcularPrecoServicoUseCaseTest {
         assertThatThrownBy(() ->
                 new CalcularPrecoServicoUseCase.Comando(ownerId, bd(valor), BigDecimal.ZERO, BigDecimal.ZERO))
                 .isInstanceOf(PrecificacaoInvalidaException.class)
-                .hasMessageContainingIgnoringCase("horas estimadas");
+                .message().containsIgnoringCase("horas estimadas");
     }
 
     @ParameterizedTest
@@ -253,7 +253,7 @@ class CalcularPrecoServicoUseCaseTest {
         assertThatThrownBy(() ->
                 new CalcularPrecoServicoUseCase.Comando(ownerId, BigDecimal.ONE, bd(valor), BigDecimal.ZERO))
                 .isInstanceOf(PrecificacaoInvalidaException.class)
-                .hasMessageContainingIgnoringCase("materiais");
+                .message().containsIgnoringCase("materiais");
     }
 
     @ParameterizedTest
@@ -263,7 +263,7 @@ class CalcularPrecoServicoUseCaseTest {
         assertThatThrownBy(() ->
                 new CalcularPrecoServicoUseCase.Comando(ownerId, BigDecimal.ONE, BigDecimal.ZERO, bd(valor)))
                 .isInstanceOf(PrecificacaoInvalidaException.class)
-                .hasMessageContainingIgnoringCase("despesas extras");
+                .message().containsIgnoringCase("despesas extras");
     }
 
     @Test
