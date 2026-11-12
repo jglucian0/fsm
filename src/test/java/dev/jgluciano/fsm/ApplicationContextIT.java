@@ -1,5 +1,6 @@
 package dev.jgluciano.fsm;
 
+import dev.jgluciano.fsm.application.FsmApplication;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
@@ -8,7 +9,7 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 /** Smoke test: a aplicação sobe e as migrations Flyway aplicam num PostgreSQL real. */
-@SpringBootTest
+@SpringBootTest(classes = FsmApplication.class)
 @Testcontainers
 class ApplicationContextIT {
 

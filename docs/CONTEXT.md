@@ -29,6 +29,13 @@ Estrutura de cada módulo: `api/` · `core/{model,ports,usecase}` · `infrastruc
 5. Entidades JPA ficam só em `infrastructure.persistence`; o domínio é mapeado por MapStruct.
 6. Schema só muda via Flyway (`ddl-auto: validate`). Toda tabela tem `owner_id` (preparado para multiusuário).
 
+## Regras de precificação (ADR 0005)
+- VHT = (custos fixos mensais + pró-labore) / horas produtivas mensais
+- Índice de markup = 1 − (impostos% + taxas financeiras% + margem%) / 100
+- Custo direto = horas × VHT + materiais + despesas extras
+- Preço final = custo direto / índice de markup
+- BigDecimal: cálculo em escala 10; saída em escala 2; HALF_UP
+
 ## Convenções
 - TDD: commit do teste falhando (Red) → implementação mínima (Green) → refatoração (Refactor).
 - Commits no padrão Conventional Commits (`feat:`, `test:`, `refactor:`, `chore:`, `docs:`).
@@ -36,14 +43,17 @@ Estrutura de cada módulo: `api/` · `core/{model,ports,usecase}` · `infrastruc
 - Código e nomes de domínio em português (Orcamento, ItemOrcamento); termos técnicos em inglês.
 - Sem Lombok: records para DTOs e valor.
 - Dinheiro: `BigDecimal` com escala 2 e `RoundingMode.HALF_UP` (a definir no ADR da Fase 1).
+- Testcontainers fixado em 1.21.4 (`<testcontainers.version>` no pom) por compatibilidade com Docker 29+.
+- Testes de integração usam `@SpringBootTest(classes = FsmApplication.class)` (a classe principal fica em `application/`).
 
 ## Estado atual
-- Fase: **0 (Fundação)**, esqueleto gerado, aguardando validação local.
-- Pronto: pom, docker-compose, Flyway V1 (baseline), esqueleto de pacotes, ArchUnit, smoke IT, CI.
-- Próximo: Fase 1, `catalogo` + calculadora de preços (primeiro ciclo TDD).
+- Fase: **1 (Catálogo e calculadora de preços)**, em início.
+- Fase 0 validada: `mvn verify` verde (ArchUnit + smoke IT com Testcontainers).
+- Pronto: pom, docker-compose, Flyway V1 (baseline), esqueleto de pacotes, ArchUnit, CI.
+- Próximo: Fase 1a, domínio e `CalcularPrecoServicoUseCase` em TDD (sem banco).
 
 ## Decisões em aberto
 - Frontend (PWA): tecnologia a definir após o backend.
 - Autenticação (Spring Security): começar com usuário único, Fase 2 ou 3.
-- Fórmula exata da calculadora de preços (custo/hora, margem, deslocamento): definir no início da Fase 1.
+- Arredondamento: premissas do ADR 0005 a confirmar
 - Biblioteca de PDF (OpenPDF, PDFBox ou iText): Fase 3.
