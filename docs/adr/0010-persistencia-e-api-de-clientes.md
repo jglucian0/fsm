@@ -1,5 +1,5 @@
 # ADR 0010 — Persistência e API de clientes
-**Status:** proposto (premissas a confirmar)
+**Status:** aceito
 
 **Decisão — persistência (`clientes.infrastructure.persistence`):**
 - Flyway `V3`: tabela `cliente` (`id uuid` PK, `owner_id` obrigatório, `nome varchar(120)`, `telefone varchar(11)`, `email varchar(254)`, `endereco varchar(255)`; opcionais aceitam nulo).

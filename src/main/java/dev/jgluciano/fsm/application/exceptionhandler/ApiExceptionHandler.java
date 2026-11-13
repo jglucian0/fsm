@@ -5,6 +5,7 @@ import dev.jgluciano.fsm.modules.catalogo.core.model.ConfiguracaoPrecificacaoNao
 import dev.jgluciano.fsm.modules.catalogo.core.model.MaterialJaCadastradoException;
 import dev.jgluciano.fsm.modules.catalogo.core.model.PrecificacaoInvalidaException;
 import dev.jgluciano.fsm.modules.catalogo.core.model.ServicoJaCadastradoException;
+import dev.jgluciano.fsm.modules.clientes.core.model.ClienteInvalidoException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
@@ -19,7 +20,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @RestControllerAdvice
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler({CatalogoInvalidoException.class, PrecificacaoInvalidaException.class})
+    @ExceptionHandler({CatalogoInvalidoException.class, PrecificacaoInvalidaException.class,
+            ClienteInvalidoException.class})
     ProblemDetail dadosInvalidos(RuntimeException ex) {
         return problema(HttpStatus.UNPROCESSABLE_ENTITY, "Dados inválidos", ex.getMessage());
     }
