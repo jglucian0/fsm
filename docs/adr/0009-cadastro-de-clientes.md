@@ -1,5 +1,5 @@
 # ADR 0009 — Cadastro de clientes
-**Status:** proposto (premissas a confirmar)
+**Status:** aceito
 
 **Contexto:** o orçamento (Fase 2b) e o envio por WhatsApp/e-mail (Fase 3) precisam de um cliente com contato. O endereço servirá ao cálculo da taxa de deslocamento.
 

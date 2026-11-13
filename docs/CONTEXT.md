@@ -47,7 +47,7 @@ Estrutura de cada módulo: `api/` · `core/{model,ports,usecase}` · `infrastruc
 - Testes de integração usam `@SpringBootTest(classes = FsmApplication.class)` (a classe principal fica em `application/`).
 
 ## Estado atual
-- 
+- domínio de clientes pronto
 
 ## Decisões em aberto
 - Frontend (PWA): tecnologia a definir após o backend.
