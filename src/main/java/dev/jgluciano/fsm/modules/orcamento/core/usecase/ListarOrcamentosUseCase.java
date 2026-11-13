@@ -17,7 +17,12 @@ public class ListarOrcamentosUseCase {
     }
 
     public List<Orcamento> executar(Comando comando) {
-        throw new UnsupportedOperationException("Red: ainda não implementado");
+        Objects.requireNonNull(comando, "comando");
+
+        if (comando.status() == null) {
+            return orcamentoRepository.listarPorOwner(comando.ownerId());
+        }
+        return orcamentoRepository.listarPorOwnerEStatus(comando.ownerId(), comando.status());
     }
 
     /** {@code status} nulo significa "todos os status". */

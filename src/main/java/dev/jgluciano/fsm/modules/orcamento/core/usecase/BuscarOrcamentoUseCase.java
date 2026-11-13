@@ -1,6 +1,7 @@
 package dev.jgluciano.fsm.modules.orcamento.core.usecase;
 
 import dev.jgluciano.fsm.modules.orcamento.core.model.Orcamento;
+import dev.jgluciano.fsm.modules.orcamento.core.model.OrcamentoNaoEncontradoException;
 import dev.jgluciano.fsm.modules.orcamento.core.ports.OrcamentoRepository;
 
 import java.util.Objects;
@@ -15,7 +16,10 @@ public class BuscarOrcamentoUseCase {
     }
 
     public Orcamento executar(Comando comando) {
-        throw new UnsupportedOperationException("Red: ainda não implementado");
+        Objects.requireNonNull(comando, "comando");
+
+        return orcamentoRepository.buscarPorId(comando.ownerId(), comando.id())
+                .orElseThrow(() -> new OrcamentoNaoEncontradoException(comando.id()));
     }
 
     public record Comando(UUID ownerId, UUID id) {
