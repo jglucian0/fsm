@@ -5,6 +5,8 @@ import java.math.RoundingMode;
 import java.util.Objects;
 import java.util.UUID;
 
+import static dev.jgluciano.fsm.modules.catalogo.core.model.Validacoes.exigirNaoNegativo;
+
 /**
  * Parâmetros de precificação do profissional (ADR 0005).
  * Percentuais em pontos: 6 significa 6%.
@@ -62,11 +64,5 @@ public record ConfiguracaoPrecificacao(
 
     private static BigDecimal somaPercentuais(BigDecimal a, BigDecimal b, BigDecimal c) {
         return a.add(b).add(c);
-    }
-
-    private static void exigirNaoNegativo(BigDecimal valor, String campo) {
-        if (valor.signum() < 0) {
-            throw new PrecificacaoInvalidaException(campo + " não pode ser negativo");
-        }
     }
 }
