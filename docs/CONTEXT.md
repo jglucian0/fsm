@@ -47,7 +47,7 @@ Estrutura de cada módulo: `api/` · `core/{model,ports,usecase}` · `infrastruc
 - Testes de integração usam `@SpringBootTest(classes = FsmApplication.class)` (a classe principal fica em `application/`).
 
 ## Estado atual
-- Fase 1a concluída (domínio + CalcularPrecoServicoUseCase, Green); próximo é o Refactor e a Fase 1b, catálogo de materiais e serviços com persistência
+- Domínio e casos de uso do catálogo concluídos (configuração, materiais, serviços); próximo é a persistência e a API REST
 
 ## Decisões em aberto
 - Frontend (PWA): tecnologia a definir após o backend.

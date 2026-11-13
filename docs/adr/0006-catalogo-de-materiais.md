@@ -1,5 +1,5 @@
 # ADR 0006 — Catálogo de materiais
-**Status:** proposto (premissas a confirmar)
+**Status:** aceito
 
 **Contexto:** o orçamento precisa de materiais com custo unitário para compor o custo direto (ADR 0005). Na Fase 1 o catálogo é independente do orçamento; a composição por item (quantidade x custo unitário) fica para a Fase 2.
 
