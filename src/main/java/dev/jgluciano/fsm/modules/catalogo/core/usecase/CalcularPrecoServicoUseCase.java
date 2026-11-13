@@ -2,13 +2,14 @@ package dev.jgluciano.fsm.modules.catalogo.core.usecase;
 
 import dev.jgluciano.fsm.modules.catalogo.core.model.ConfiguracaoPrecificacao;
 import dev.jgluciano.fsm.modules.catalogo.core.model.ConfiguracaoPrecificacaoNaoEncontradaException;
-import dev.jgluciano.fsm.modules.catalogo.core.model.PrecificacaoInvalidaException;
 import dev.jgluciano.fsm.modules.catalogo.core.ports.ConfiguracaoPrecificacaoRepository;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Objects;
 import java.util.UUID;
+
+import static dev.jgluciano.fsm.modules.catalogo.core.model.Validacoes.exigirNaoNegativo;
 
 /**
  * Calcula o preço de um serviço (ADR 0005):
@@ -60,12 +61,6 @@ public class CalcularPrecoServicoUseCase {
             exigirNaoNegativo(horasEstimadas, "Horas estimadas");
             exigirNaoNegativo(custoMateriais, "Custo de materiais");
             exigirNaoNegativo(despesasExtras, "Despesas extras");
-        }
-
-        private static void exigirNaoNegativo(BigDecimal valor, String campo) {
-            if (valor.signum() < 0) {
-                throw new PrecificacaoInvalidaException(campo + " não pode ser negativo");
-            }
         }
     }
 
