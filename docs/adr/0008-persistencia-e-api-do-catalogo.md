@@ -1,5 +1,5 @@
 # ADR 0008 — Persistência e API REST do catálogo
-**Status:** proposto (premissas a confirmar)
+**Status:** aceito
 
 **Contexto:** o domínio do catálogo (ADR 0005, 0006, 0007) está pronto e testado sem banco. Falta persistir e expor por HTTP, sem violar as regras do ArchUnit.
 
