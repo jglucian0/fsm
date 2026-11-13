@@ -1,9 +1,9 @@
 package dev.jgluciano.fsm.modules.orcamento.core.usecase;
 
 import dev.jgluciano.fsm.modules.orcamento.core.model.Orcamento;
+import dev.jgluciano.fsm.modules.orcamento.core.model.OrcamentoNaoEncontradoException;
 import dev.jgluciano.fsm.modules.orcamento.core.ports.OrcamentoRepository;
 
-import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -16,7 +16,11 @@ public class RemoverItemOrcamentoUseCase {
     }
 
     public Orcamento executar(Comando comando) {
-        throw new UnsupportedOperationException("Red: ainda não implementado");
+        Objects.requireNonNull(comando, "comando");
+
+        var orcamento = orcamentoRepository.buscarPorId(comando.ownerId(), comando.orcamentoId())
+                .orElseThrow(() -> new OrcamentoNaoEncontradoException(comando.orcamentoId()));
+        return orcamentoRepository.salvar(orcamento.removerItem(comando.indice()));
     }
 
     public record Comando(UUID ownerId, UUID orcamentoId, int indice) {
