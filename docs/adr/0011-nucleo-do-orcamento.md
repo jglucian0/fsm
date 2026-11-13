@@ -1,5 +1,5 @@
 # ADR 0011 — Núcleo do orçamento
-**Status:** proposto (premissas a confirmar)
+**Status:** aceito
 
 **Contexto:** o orçamento é o centro do produto: o eletricista monta itens, informa deslocamento e desconto, envia ao cliente e acompanha a aprovação. Esta ADR cobre só o `core` (Fase 3a); persistência, API e envio vêm depois.
 
