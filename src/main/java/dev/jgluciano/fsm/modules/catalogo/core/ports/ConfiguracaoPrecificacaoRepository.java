@@ -8,4 +8,7 @@ import java.util.UUID;
 public interface ConfiguracaoPrecificacaoRepository {
 
     Optional<ConfiguracaoPrecificacao> buscarPorOwner(UUID ownerId);
+
+    /** Cria ou substitui a configuração do dono (uma por dono). */
+    ConfiguracaoPrecificacao salvar(ConfiguracaoPrecificacao configuracao);
 }

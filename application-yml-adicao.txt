@@ -1,0 +1,5 @@
+# Opcional: acrescente ao final de src/main/resources/application.yml
+# (o valor abaixo já é o padrão usado pelo código se a chave não existir)
+
+fsm:
+  owner-id: 00000000-0000-0000-0000-000000000001   # usuário único até a fase de autenticação
